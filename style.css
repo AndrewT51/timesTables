@@ -1,0 +1,67 @@
+@font-face {
+    font-family:"digital";
+    src: url("fonts/digital.ttf") /* TTF file for CSS3 browsers */
+}
+
+button {
+
+  width: 50vw;
+  padding: 5px;
+  font-size: 1.5em;
+  text-align: center;
+  display: block;
+  margin-top: 7px;
+}
+
+.panel {
+  text-align: center;
+}
+
+.countdown {
+  color: red;
+  text-align: center;
+}
+
+.questions  {
+  font-size: 3em;
+  text-align: right;
+}
+
+.answer {
+  font-size: 3em;
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+timer {
+  width: 20vw;
+  border: solid black 1px;
+  background-color: beige;
+  display: block;
+  position:fixed;
+  bottom:5px;
+  left:5px;
+}
+
+.digitalFont {
+  position: relative;
+  top:10px;
+  font-family: digital;
+  font-size: 2em;
+  color:red;
+  background-color: black;
+}
+
+.timerHeading {
+  text-align: center;
+}
+
+.timerBody {
+  text-align: center;
+  background-color: black;
+  font-size: 2em;
+}
+
