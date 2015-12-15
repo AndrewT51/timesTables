@@ -1,9 +1,32 @@
 <div class="row">
-  <div class="col-xs-6 col-xs-offset-3">
-    <p class="questions col-xs-6">{{table}} x {{currentNum}} = </p><input type="text" class="answer col-xs-6" ng-keypress="submitAnswer($event)" ng-model="answer" autofocus>
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3 "> 
+    <p class="questions col-xs-6">{{table}} x {{currentNum}} = </p><input type="number" class="answer col-xs-6" ng-keypress="submitAnswer($event)" ng-model="answer" autofocus>
     <!-- <input onclick='responsiveVoice.speak("' + {{table}} + ' times ' + '{{currentNum}}")' /> -->
   </div>
+<!-- <div class="row"> -->
+  <timer class="col-xs-12 col-sm-6 col-sm-offset-3"></timer>
+  <table class="answersSoFar col-xs-12 col-sm-6 col-sm-offset-3" >
+    <tr ng-repeat="question in arrayOfQuestionsAsked">
+      <td>{{question.table}} x {{question.rand}} = {{question.attempt}} </td>
+      <td ng-if="question.table * question.rand == question.attempt"> <i class="fa fa-check"></i></td>
+      <td ng-if="question.table * question.rand != question.attempt"> <i class="fa fa-close"></i></td>
+    </tr>
+  </table>
 </div>
-<div>
-  <timer></timer>
 </div>
+ <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+          <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+            <h4 class="modal-title">Results</h4>
+        </div>
+        <div class="modal-body">
+            <p>You made {{mistakes}} mistake<span ng-if="mistakes !=1">s</span> and finished in {{minutes}} minute<span ng-if="minutes !=1">s</span> and {{counter}} second<span ng-if="counter !=1">s</span>.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="restart()">Close</button>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

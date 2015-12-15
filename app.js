@@ -40,7 +40,7 @@ var myApp = angular.module("myApp", ["ui.router"])
     for (var i = 0; i <=10; i++){
       var randomNum = Math.floor(Math.random()*11+1)+1;
       questionArray.push({
-        table:MyService.data.num, 
+        table:MyService.data.num||Math.floor(Math.random()*11+1)+1, 
         rand: randomNum, 
         answer: function(){
           return this.table * this.rand;

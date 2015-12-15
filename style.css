@@ -3,8 +3,13 @@
     src: url("fonts/digital.ttf") /* TTF file for CSS3 browsers */
 }
 
-button {
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
+button {
   width: 50vw;
   padding: 5px;
   font-size: 1.5em;
@@ -12,6 +17,19 @@ button {
   display: block;
   margin-top: 7px;
 }
+
+#myModal button {
+  width: 100%;
+}
+
+.answersSoFar td {
+  font-size: 1.2em;
+  background-color: black;
+  color:white;
+  padding: 5px 10px;
+  text-align: center;
+}
+
 
 .panel {
   text-align: center;
@@ -28,7 +46,7 @@ button {
 }
 
 .answer {
-  font-size: 3em;
+  font-size: 2.5em;
   width: 100px;
   padding: 5px;
   text-align: center;
@@ -37,31 +55,43 @@ button {
 }
 
 timer {
-  width: 20vw;
+  
+  margin-top: 20px;
   border: solid black 1px;
   background-color: beige;
   display: block;
   position:fixed;
   bottom:5px;
-  left:5px;
+  padding: 0px !important;
+
 }
 
 .digitalFont {
   position: relative;
-  top:10px;
+  top:2px;
   font-family: digital;
-  font-size: 2em;
+  font-size: 3em;
   color:red;
   background-color: black;
+
 }
 
 .timerHeading {
   text-align: center;
+  font-size:3em;
 }
 
 .timerBody {
   text-align: center;
   background-color: black;
-  font-size: 2em;
+ 
+}
+
+.fa-close {
+  color: red;
+}
+
+.fa-check {
+  color: lightgreen;
 }
 

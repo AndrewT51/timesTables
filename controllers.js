@@ -1,6 +1,10 @@
 var myApp = angular.module('myApp')
 .controller("menu", function($scope, MyService,$state){
+  $('#your-modal-id').modal('hide');
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
   $scope.table = function(num){
+
     MyService.update(num)
     $state.go('countdown')
   }
@@ -19,7 +23,9 @@ var myApp = angular.module('myApp')
 
 .controller('test', function($scope, MyService, questionGenerator,$interval,$state){
   var currentQuestion = questionGenerator.serveQuestion();
-  var mistakes = 0;
+  var forFurtherPractise = [];
+  $scope.mistakes = 0;
+  $scope.arrayOfQuestionsAsked = [];
   console.log('hi')
   $scope.counter=00;
   $scope.minutes=0;
@@ -48,23 +54,31 @@ var myApp = angular.module('myApp')
   }
 
   function handleAnswer(answer){
-    if(answer == currentQuestion[0].answer()){
-      console.log("congratulations")  
-      
+    currentQuestion[0].attempt = answer;
+    if(answer == currentQuestion[0].answer()){ 
       responsiveVoice.speak( 'Correct!');
-
     }else{
       currentQuestion.push(currentQuestion[0]);
-      mistakes ++;
+      forFurtherPractise.push(currentQuestion[0]);
+      console.log(currentQuestion[0]);
+      console.log(forFurtherPractise);
+      $scope.mistakes ++;
       responsiveVoice.speak("Wrong!!")
     }
-    console.log("Mistakes: ",mistakes)
-    currentQuestion.shift()
+    $scope.arrayOfQuestionsAsked.push(currentQuestion.shift());
     if(currentQuestion[0]){
       showQuestion(); 
     }else{
-      console.log('You made '+ mistakes + ' mistakes and finished in ' + $scope.minutes + ':'+$scope.counter);
-      $state.go('home')
+      $interval.cancel(timer);
+      if(!$scope.mistakes) $scope.mistakes = 'no';
+      if($scope.mistakes != 1) 
+      console.log('You made '+ $scope.mistakes + ' mistakes and finished in ' + $scope.minutes + ':'+$scope.counter);
+      responsiveVoice.speak('You made '+ $scope.mistakes + ' mistakes and finished in ' + $scope.minutes + ' minutes and '+$scope.counter+' seconds');
+      $('#myModal').modal();
+      $scope.restart = function(){
+        $state.go('home')
+      }
+  
     }
   }
 })
